@@ -13,6 +13,10 @@ const sections = document.querySelectorAll("[data-section]");
 const revealTargets = document.querySelectorAll(".reveal");
 const filterButtons = document.querySelectorAll("[data-filter]");
 const projectCards = document.querySelectorAll("[data-project-card]");
+const sendButton = document.getElementById("send-message");
+
+const CONTACT_EMAIL = "traviseweka39@gmail.com";
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 function setContactState(isOpen) {
     contactPanel.classList.toggle("is-open", isOpen);
@@ -89,7 +93,7 @@ if (form) {
         formStatus.textContent = "";
     });
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const formData = new FormData(form);
@@ -98,27 +102,84 @@ if (form) {
         const visitorMessage = formData.get("visitorMessage")?.toString().trim();
 
         if (!visitorName || !visitorEmail || !visitorMessage) {
-            formStatus.textContent = "Please complete the required fields before opening the email draft.";
+            formStatus.textContent = "Please complete the required fields before sending.";
             return;
         }
 
-        const params = new URLSearchParams({
-            subject: `Portfolio contact from ${visitorName}`,
-            body: buildPreview(formData),
-        });
+        // Bots fill every field, including the hidden one. Pretend it worked and stop.
+        if (formData.get("_honey")) {
+            formStatus.textContent = "Thanks! Your message was sent.";
+            form.reset();
+            return;
+        }
 
-        window.location.href = `mailto:traviseweka39@gmail.com?${params.toString()}`;
-        formStatus.textContent = "Opening your email app now.";
+        const subject = `Portfolio contact from ${visitorName}`;
+        const body = buildPreview(formData);
+
+        sendButton.disabled = true;
+        sendButton.textContent = "Sending...";
+        formStatus.textContent = "";
+
+        try {
+            // FormSubmit forwards the message to my inbox, so no email app is needed.
+            const response = await fetch(FORM_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    name: visitorName,
+                    email: visitorEmail,
+                    phone_or_contact: formData.get("visitorContact")?.toString().trim() || "Not provided",
+                    organization: formData.get("visitorOrganization")?.toString().trim() || "Not provided",
+                    message: visitorMessage,
+                    _subject: subject,
+                    _template: "table",
+                }),
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok || String(result.success) !== "true") {
+                throw new Error(result.message || `Request failed with status ${response.status}`);
+            }
+
+            form.reset();
+            refreshContactPreview();
+            formStatus.textContent = "Thanks! Your message was sent. I'll get back to you soon.";
+        } catch (error) {
+            console.error("Contact form error:", error);
+            showMailtoFallback(subject, body);
+        } finally {
+            sendButton.disabled = false;
+            sendButton.textContent = "Send Message";
+        }
     });
+}
+
+// Backup plan if the sending service is down: a mailto link that keeps normal spaces.
+// encodeURIComponent turns a space into %20, which every email app understands.
+// (URLSearchParams turned spaces into "+", which is why drafts looked like "hi+my+name+is...".)
+function showMailtoFallback(subject, body) {
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    formStatus.textContent = "";
+    formStatus.append("The message couldn't be sent right now. ");
+
+    const fallbackLink = document.createElement("a");
+    fallbackLink.href = mailtoUrl;
+    fallbackLink.textContent = "Open it in your email app instead";
+    formStatus.append(fallbackLink, ".");
 }
 
 if (copyEmailButton) {
     copyEmailButton.addEventListener("click", async () => {
         try {
-            await navigator.clipboard.writeText("traviseweka39@gmail.com");
+            await navigator.clipboard.writeText(CONTACT_EMAIL);
             formStatus.textContent = "Email address copied.";
         } catch (error) {
-            formStatus.textContent = "Copy failed. Use traviseweka39@gmail.com.";
+            formStatus.textContent = `Copy failed. Use ${CONTACT_EMAIL}.`;
         }
     });
 }

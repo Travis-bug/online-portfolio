@@ -680,6 +680,25 @@ main {
 .resume-stack {
     display: grid;
     gap: 1.25rem;
+    align-content: start;
+}
+
+.resume-entry + .resume-entry {
+    margin-top: 1.1rem;
+}
+
+.resume-entry h3 {
+    margin-bottom: 0.2rem;
+}
+
+.resume-meta {
+    margin: 0 0 0.55rem;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+.resume-page .resume-subheading {
+    margin-top: 1.6rem;
 }
 
 @media (max-width: 980px) {
@@ -752,6 +771,19 @@ main {
 }
 
 @media print {
+    @page {
+        size: letter;
+        margin: 0.45in;
+    }
+
+    html {
+        font-size: 12px;
+    }
+
+    .resume-page {
+        background: #ffffff;
+    }
+
     .resume-actions {
         display: none;
     }
@@ -759,6 +791,107 @@ main {
     .resume-shell {
         box-shadow: none;
         margin: 0;
+        padding: 0;
         width: 100%;
+        background: #ffffff;
     }
+
+    .resume-header {
+        flex-direction: row;
+        padding-bottom: 0.6rem;
+    }
+
+    .resume-header h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Grid layouts break badly across printed pages in Chrome, so print uses plain blocks. */
+    .resume-grid-layout {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.4rem;
+        margin-top: 0.8rem;
+    }
+
+    .resume-stack {
+        display: block;
+    }
+
+    .resume-stack:first-child {
+        flex: 1.6 1 0;
+    }
+
+    .resume-stack:last-child {
+        flex: 1 1 0;
+    }
+
+    .resume-card + .resume-card {
+        margin-top: 0.8rem;
+    }
+
+    .resume-card {
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .resume-page h2 {
+        margin-bottom: 0.4rem;
+        padding-bottom: 0.2rem;
+        border-bottom: 1px solid var(--line);
+        font-size: 1.25rem;
+    }
+
+    .resume-page h3 {
+        font-size: 1rem;
+    }
+
+    .resume-page p,
+    .resume-page li {
+        line-height: 1.4;
+    }
+
+    .resume-card ul {
+        display: block;
+    }
+
+    .resume-card li + li {
+        margin-top: 0.2rem;
+    }
+
+    .resume-entry + .resume-entry {
+        margin-top: 0.6rem;
+    }
+
+    .resume-meta {
+        margin-bottom: 0.25rem;
+    }
+
+    .resume-page .resume-subheading {
+        margin-top: 0.9rem;
+    }
+
+    .resume-entry {
+        break-inside: avoid;
+    }
+
+    .resume-page a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.contact-form button[disabled] {
+    opacity: 0.6;
+    cursor: wait;
 }
