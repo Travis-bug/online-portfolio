@@ -78,9 +78,9 @@
                         <div><dt>Hosting</dt><dd>My own Oracle server</dd></div>
                     </dl>
                     <ul class="feature-notes">
-                        <li>React front end talking to a back end I deployed with Docker.</li>
+                        <li>React website on an ASP.NET Core back end that I deployed with Docker.</li>
                         <li>I set up and maintained the Oracle Cloud server it ran on.</li>
-                        <li>Now building a Java Android app for it with a team of four.</li>
+                        <li>Accounts, watch history and comments live in one REST API, so the new Android app shares them.</li>
                     </ul>
                     <div class="actions">
                         <a class="button" href="https://github.com/Travis-bug/SakugaVault" target="_blank" rel="noreferrer">Open repository</a>
@@ -93,16 +93,20 @@
                     <button type="button" data-filter="java" aria-pressed="false">Java</button>
                     <button type="button" data-filter="python" aria-pressed="false">Python</button>
                     <button type="button" data-filter="c" aria-pressed="false">C</button>
+                    <button type="button" data-filter="js" aria-pressed="false">JavaScript</button>
                 </div>
 
                 <ul class="projects">
                     <li class="project" data-tags="java">
                         <div>
                             <h3>SakugaVault Mobile</h3>
-                            <p>An Android app that gives SakugaVault a phone-first way in, using the same back end as the website. Team project for Mobile Application Development.</p>
-                            <p class="stack">Java, Android Studio, REST, team of 4</p>
+                            <p>A native Android app for SakugaVault that runs on the same live API as the website: real sign-in, catalog, search with genre filters, and watch progress saved to your account. Team project for Mobile Application Development.</p>
+                            <p class="stack">Java, Android, Media3 / ExoPlayer, REST, team of 4</p>
                         </div>
-                        <div class="project-side"><span class="status status-wip">In progress</span></div>
+                        <div class="project-side">
+                            <span class="status status-wip">Working prototype</span>
+                            <a href="https://github.com/Travis-bug/SakugaVaultMobile" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
                     </li>
                     <li class="project" data-tags="csharp">
                         <div>
@@ -121,7 +125,10 @@
                             <p>Finds duplicate files by hashing their contents with BLAKE2b, with a quick first-chunk check so it skips most files early. I'm rewriting it in C by hand to learn the language.</p>
                             <p class="stack">Python, C, BLAKE2b</p>
                         </div>
-                        <div class="project-side"><span class="status status-wip">Rewriting in C</span></div>
+                        <div class="project-side">
+                            <span class="status status-wip">Rewriting in C</span>
+                            <a href="https://github.com/Travis-bug/Duplikate" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
                     </li>
                     <li class="project" data-tags="python">
                         <div>
@@ -142,12 +149,34 @@
                     <li class="project" data-tags="java">
                         <div>
                             <h3>HRM Payroll System</h3>
-                            <p>A team-built HR app for managing staff, calculating payroll with tax and overtime, and producing reports, with tests and a clean Git workflow.</p>
+                            <p>A team-built JavaFX app for managing staff, running payroll and producing department reports. I co-led the back end: the payroll formulas for overtime, bonuses, deductions and tax, plus validation, all unit-tested apart from the UI.</p>
                             <p class="stack">Java, JavaFX, JUnit, Maven</p>
                         </div>
                         <div class="project-side">
                             <span class="status status-done">Shipped</span>
-                            <a href="https://github.com/Travis-bug/Comp2130_Assignment_02" target="_blank" rel="noreferrer">Repository</a>
+                            <a href="https://github.com/Travis-bug/HR_Payroll-System" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
+                    </li>
+                    <li class="project" data-tags="js">
+                        <div>
+                            <h3>Tensor-view</h3>
+                            <p>An interactive 3D view of who did what to whom. Each type of interaction becomes its own see-through layer of a multi-relational adjacency tensor, and you can toggle layers on and off and orbit around the result.</p>
+                            <p class="stack">JavaScript, Three.js</p>
+                        </div>
+                        <div class="project-side">
+                            <span class="status status-done">Shipped</span>
+                            <a href="https://github.com/Travis-bug/Tensor-view" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
+                    </li>
+                    <li class="project" data-tags="java">
+                        <div>
+                            <h3>Tic-Tac-Toe with AI</h3>
+                            <p>A terminal game with a two-player mode and a computer opponent that uses the Minimax algorithm to always play the best move, built using plain arrays only for a Data Structures and Algorithms team project.</p>
+                            <p class="stack">Java, Minimax</p>
+                        </div>
+                        <div class="project-side">
+                            <span class="status status-done">Shipped</span>
+                            <a href="https://github.com/Travis-bug/Tictactoe_game" target="_blank" rel="noreferrer">Repository</a>
                         </div>
                     </li>
                     <li class="project" data-tags="java">
