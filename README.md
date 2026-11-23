@@ -7,15 +7,15 @@ Static portfolio site for Eseosa Travis Eweka.
 - `index.html`: main portfolio page
 - `resume.html`: generic on-site resume page
 - `styles.css`: shared styling
-- `script.js`: contact panel, project filters, reveal animations, and email-draft behavior
-- `assets/documents/`: resume PDF and transcript PDF
+- `script.js`: contact form, project filters, nav highlighting and timeline motion
+- `assets/documents/`: transcript PDF
 - `assets/images/profile.jpg`: profile image
 
 ## Replace the unofficial transcript later
 
 1. Put the new PDF in `assets/documents/`.
 2. Either rename the new file to `Unofficial_Transcript.pdf`, or keep your preferred name and update the transcript link in `index.html`.
-3. The current transcript link is in the `Education & Acknowledgements` section.
+3. The current transcript link is in the `Education` section.
 4. Re-open `index.html` in the browser and confirm the transcript button opens the new file.
 
 ## Publish options

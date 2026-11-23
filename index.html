@@ -3,425 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Online portfolio for Eseosa Travis Eweka, a George Brown Polytechnic Computer Programming student.">
-    <title>Eseosa Travis Eweka | Online Portfolio</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23e7742c'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-family='Arial' font-size='28' font-weight='700' fill='white'%3ETE%3C/text%3E%3C/svg%3E">
+    <meta name="description" content="Travis Eweka, Computer Programming & Analysis student at George Brown Polytechnic. Full-stack apps in C#, Java and Python.">
+    <meta name="theme-color" content="#edf0f3">
+    <title>Travis Eweka | Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23172033'/%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' font-family='Helvetica, Arial' font-size='28' font-weight='500' fill='%23f9fafb'%3ETE%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="backdrop backdrop-one"></div>
-    <div class="backdrop backdrop-two"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
-        <a class="brand" href="#profile">
-            <span class="brand-mark">TE</span>
-            <span class="brand-copy">
-                <strong>Travis Eweka</strong>
-                <span>Computer Programming Student</span>
-            </span>
-        </a>
-
-        <nav class="site-nav" aria-label="Primary">
-            <a href="#profile" data-nav-link>Profile</a>
-            <a href="#resume" data-nav-link>Resume</a>
-            <a href="#work-samples" data-nav-link>Work Samples</a>
-            <a href="#education" data-nav-link>Education &amp; Acknowledgements</a>
-            <button class="nav-contact-button" type="button" data-contact-open>Contact</button>
-        </nav>
+        <div class="pegbar" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="wrap header-row">
+            <a class="brand" href="#top">Travis Eweka</a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="#work" data-nav-link>Work</a>
+                <a href="#experience" data-nav-link>Experience</a>
+                <a class="hide-sm" href="#education" data-nav-link>Education</a>
+                <a href="#contact" data-nav-link>Contact</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="section hero reveal" id="profile" data-section>
-            <div class="hero-copy">
-                <p class="eyebrow">Online Portfolio</p>
-                <h1>Building practical software with a strong foundation in web, database, and backend development.</h1>
-                <p class="lede">
-                    I am Eseosa Travis Eweka, a George Brown Polytechnic Computer Programming student focused on turning course concepts into real applications.
-                    My work centers on structured backend systems, clear user experiences, and database-backed solutions that solve practical problems.
-                </p>
-
-                <div class="hero-actions">
-                    <a class="button" href="#resume">Explore Resume Section</a>
-                    <a class="button button-secondary" href="#work-samples">View Work Samples</a>
+    <main id="main">
+        <section class="wrap hero" id="top">
+            <div>
+                <div class="name-block">
+                    <svg class="rough" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M-3 9 L103 8"/>
+                        <path d="M-2 93 L102 94"/>
+                        <path d="M1 3 L2 98"/>
+                        <path d="M-4 51 C 30 49, 70 52, 104 50"/>
+                        <path class="red" d="M-1 30 L-1 70"/>
+                    </svg>
+                    <h1 class="name"><span>Travis</span><span>Eweka</span></h1>
                 </div>
-
-                <ul class="hero-points">
-                    <li>Diploma in Computer Programming, George Brown Polytechnic</li>
-                    <li>Interest areas: ASP.NET, C#, Java, SQL, MySQL, Linux, and responsive front-end development</li>
-                    <li>Known for adaptable problem solving, technical support, and collaborative project work</li>
+                <p class="hero-text">
+                    I'm a Computer Programming &amp; Analysis student at George Brown Polytechnic.
+                    I build full-stack apps in C#, Java and Python, and I once ran a streaming site
+                    that reached about 15,000 people.
+                </p>
+                <div class="actions">
+                    <a class="button" href="#work">See my work</a>
+                    <a class="button button-quiet" href="resume.html">View resume</a>
+                </div>
+                <ul class="hero-facts">
+                    <li>Toronto, Ontario</li>
+                    <li>Diploma expected June 2027</li>
+                    <li><a href="https://github.com/Travis-bug" target="_blank" rel="noreferrer">github.com/Travis-bug</a></li>
                 </ul>
             </div>
-
-            <div class="hero-panel">
-                <img class="portrait" src="assets/images/3475EBD7-9BC5-4697-B7C0-263CB9B5160E_1_105_c.jpeg" alt="Portrait of Eseosa Travis Eweka">
-
-                <div class="mini-card">
-                    <p class="mini-label">Current Focus</p>
-                    <p class="mini-value">Full-stack student projects, backend services, and polished portfolio presentation</p>
-                </div>
-
-                <div class="mini-card mini-card-accent">
-                    <p class="mini-label">Direct Contact</p>
-                    <a href="mailto:traviseweka39@gmail.com">traviseweka39@gmail.com</a>
-                    <a href="tel:+16475815103">+1 (647) 581-5103</a>
-                </div>
-            </div>
+            <figure class="portrait-frame">
+                <img src="assets/images/profile.jpg" alt="Travis Eweka" width="665" height="1182">
+                <figcaption>Currently leading SafeWalk shifts on campus and learning C on the side.</figcaption>
+            </figure>
         </section>
 
-        <section class="section reveal" id="resume" data-section>
-            <div class="section-heading">
-                <p class="eyebrow">Section 1</p>
-
-                <h2>Profile &amp; Resume</h2>
-                <p>
-                    My general resume: the software I build, plus the customer service, sales and support experience behind how I work with people.
-                </p>
-
-
-                <div class="button-row" style="padding-left: 0.15rem">
-                    <a class="button" href="resume.html">Click to view Resume</a>
-                </div>
-
+        <section class="wrap section" id="work" data-section>
+            <div class="section-head">
+                <h2>Work</h2>
+                <p>Things I've built, from shipped to still on the bench.</p>
             </div>
-
-
-
-            <div class="resume-grid">
-                <article class="panel">
-                    <h3>Professional Summary</h3>
-                    <p>
-                        Computer Programming &amp; Analysis student at George Brown Polytechnic who builds full-stack apps and tools in C#, Java and Python.
-                        I pair that with 2+ years of front-line customer service, sales and technical support, so I'm as comfortable helping a customer as I am shipping code.
-                        I built and ran a streaming web app that reached about 15,000 users, and I now lead SafeWalk shifts on campus.
+            <div class="section-body">
+                <article class="feature">
+                    <h3>SakugaVault</h3>
+                    <p class="feature-lede">
+                        A free anime streaming web app I built and ran on my own. It grew to roughly
+                        15,000 users in three months. I shut it down rather than start charging people for it.
                     </p>
-                </article>
-
-                <article class="panel">
-                    <h3>Core Strengths</h3>
-                    <div class="tag-list">
-                        <span>C#</span>
-                        <span>ASP.NET Core</span>
-                        <span>Java</span>
-                        <span>Spring Boot</span>
-                        <span>Python</span>
-                        <span>JavaScript</span>
-                        <span>React</span>
-                        <span>SQL / MySQL</span>
-                        <span>Docker</span>
-                        <span>Git, GitHub &amp; GitLab</span>
-                        <span>Linux &amp; Bash</span>
-                        <span>Customer Service</span>
-                        <span>Technical Support</span>
-                        <span>Team Training</span>
-                        <span>Microsoft Office</span>
+                    <dl class="feature-stats">
+                        <div><dt>Users reached</dt><dd>About 15,000</dd></div>
+                        <div><dt>Time live</dt><dd>3 months</dd></div>
+                        <div><dt>Hosting</dt><dd>My own Oracle server</dd></div>
+                    </dl>
+                    <ul class="feature-notes">
+                        <li>React front end talking to a back end I deployed with Docker.</li>
+                        <li>I set up and maintained the Oracle Cloud server it ran on.</li>
+                        <li>Now building a Java Android app for it with a team of four.</li>
+                    </ul>
+                    <div class="actions">
+                        <a class="button" href="https://github.com/Travis-bug/SakugaVault" target="_blank" rel="noreferrer">Open repository</a>
                     </div>
                 </article>
 
-                <article class="panel panel-wide">
-                    <h3>Experience Snapshot</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">SafeWalk Captain</p>
-                                <p class="timeline-meta">George Brown Polytechnic Student Association | Toronto, ON | Sept 2026 - Present</p>
-                            </div>
-                            <p>
-                                Lead a team of 2 walkers per shift, document every walk, report hazards and incidents, and submit a daily shift summary.
-                            </p>
-                        </div>
+                <div class="filters" role="group" aria-label="Filter projects by language">
+                    <button type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" data-filter="csharp" aria-pressed="false">C#</button>
+                    <button type="button" data-filter="java" aria-pressed="false">Java</button>
+                    <button type="button" data-filter="python" aria-pressed="false">Python</button>
+                    <button type="button" data-filter="c" aria-pressed="false">C</button>
+                </div>
 
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Sales Lead (previously Sales Representative)</p>
-                                <p class="timeline-meta">TELUS Field Sales - Authorized Dealer | Ontario | May 2026 - Sept 2026</p>
-                            </div>
-                            <p>
-                                Recommended services based on each customer's needs, was promoted within months for beating targets, and trained 4 new representatives.
-                            </p>
+                <ul class="projects">
+                    <li class="project" data-tags="java">
+                        <div>
+                            <h3>SakugaVault Mobile</h3>
+                            <p>An Android app that gives SakugaVault a phone-first way in, using the same back end as the website. Team project for Mobile Application Development.</p>
+                            <p class="stack">Java, Android Studio, REST, team of 4</p>
                         </div>
-
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Student Ambassador</p>
-                                <p class="timeline-meta">Black Student Success Network, George Brown Polytechnic | Toronto, ON | Jan 2025 - Apr 2026</p>
-                            </div>
-                            <p>
-                                Connected students to academic and support services, represented the BSSN at high-profile events, hosted talks for Black youth and led campus tours.
-                            </p>
+                        <div class="project-side"><span class="status status-wip">In progress</span></div>
+                    </li>
+                    <li class="project" data-tags="csharp">
+                        <div>
+                            <h3>Hospital Management System</h3>
+                            <p>A clinic back end covering patients, appointments, billing and diagnostics, organized into a clean service layer over a normalized database of 15+ tables.</p>
+                            <p class="stack">C#, ASP.NET Core, Entity Framework Core, MySQL, Docker</p>
                         </div>
-
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Cashier &amp; Staff Trainer</p>
-                                <p class="timeline-meta">Jollof Kings | Toronto, ON | Sept 2024 - Dec 2024</p>
-                            </div>
-                            <p>
-                                Handled high-volume cash and card transactions, resolved customer concerns and trained new staff on the POS system.
-                            </p>
+                        <div class="project-side">
+                            <span class="status status-done">Shipped</span>
+                            <a href="https://github.com/Travis-bug/Hospital-Management-System" target="_blank" rel="noreferrer">Repository</a>
                         </div>
-
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Technical Support Volunteer</p>
-                                <p class="timeline-meta">Local Community Centre | Brampton, ON | May 2024 - Aug 2024</p>
-                            </div>
-                            <p>
-                                Fixed hardware and software problems for 80+ community members and explained each step clearly to non-technical users.
-                            </p>
+                    </li>
+                    <li class="project" data-tags="python c">
+                        <div>
+                            <h3>Duplikate</h3>
+                            <p>Finds duplicate files by hashing their contents with BLAKE2b, with a quick first-chunk check so it skips most files early. I'm rewriting it in C by hand to learn the language.</p>
+                            <p class="stack">Python, C, BLAKE2b</p>
                         </div>
-                    </div>
-                </article>
+                        <div class="project-side"><span class="status status-wip">Rewriting in C</span></div>
+                    </li>
+                    <li class="project" data-tags="python">
+                        <div>
+                            <h3>janitor_max</h3>
+                            <p>A macOS cleaner in the spirit of CleanMyMac. It scans caches, logs, large and old files, duplicates and developer junk, and reports what's safe to remove.</p>
+                            <p class="stack">Python, macOS, terminal report</p>
+                        </div>
+                        <div class="project-side"><span class="status status-wip">In progress</span></div>
+                    </li>
+                    <li class="project" data-tags="python">
+                        <div>
+                            <h3>.yuki image format</h3>
+                            <p>My own compressed image format. It turns pictures into NumPy arrays and groups matching pixels, with the goal of beating JPEG and PNG on file size.</p>
+                            <p class="stack">Python, NumPy</p>
+                        </div>
+                        <div class="project-side"><span class="status status-wip">Experiment</span></div>
+                    </li>
+                    <li class="project" data-tags="java">
+                        <div>
+                            <h3>HRM Payroll System</h3>
+                            <p>A team-built HR app for managing staff, calculating payroll with tax and overtime, and producing reports, with tests and a clean Git workflow.</p>
+                            <p class="stack">Java, JavaFX, JUnit, Maven</p>
+                        </div>
+                        <div class="project-side">
+                            <span class="status status-done">Shipped</span>
+                            <a href="https://github.com/Travis-bug/Comp2130_Assignment_02" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
+                    </li>
+                    <li class="project" data-tags="java">
+                        <div>
+                            <h3>NegEx</h3>
+                            <p>A small open-source library that brings Python-style negative indexing to Java arrays and lists, with clearer messages when an index is out of range.</p>
+                            <p class="stack">Java, Maven</p>
+                        </div>
+                        <div class="project-side">
+                            <span class="status status-done">Shipped</span>
+                            <a href="https://github.com/Travis-bug/NegEx" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
+                    </li>
+                    <li class="project" data-tags="python">
+                        <div>
+                            <h3>Terminal Snake</h3>
+                            <p>A real-time snake game that runs in the terminal, with sound, collision detection and score tracking. The project that got me comfortable with Python.</p>
+                            <p class="stack">Python, curses</p>
+                        </div>
+                        <div class="project-side">
+                            <span class="status status-done">Shipped</span>
+                            <a href="https://github.com/Travis-bug/Python-game" target="_blank" rel="noreferrer">Repository</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
 
-        <section class="section reveal" id="work-samples" data-section>
-            <div class="section-heading">
-                <p class="eyebrow">Section 2</p>
-                <h2>Work Samples</h2>
-                <p>
-                    Selected projects demonstrate backend structure, database thinking, collaboration, and custom problem solving. Use the filters to explore by project type.
-                </p>
+        <section class="wrap section" id="experience" data-section>
+            <div class="section-head">
+                <h2>Experience</h2>
+                <p>Most recent first. The full version is on my <a href="resume.html">resume</a>.</p>
             </div>
+            <div class="section-body">
+                <ol class="timeline">
+                    <li class="is-current">
+                        <h3>SafeWalk Captain</h3>
+                        <p class="when">George Brown Polytechnic Student Association, Toronto. Sept 2026 to now</p>
+                        <p>Lead two walkers per shift, keep a record of every walk, report hazards and incidents, and send a summary at the end of each shift.</p>
+                    </li>
+                    <li class="is-current">
+                        <h3>Brand Ambassador</h3>
+                        <p class="when">George Brown Polytechnic Student Association, Toronto. Nov 2026 to now</p>
+                        <p>Promote Student Association elections by talking with students one-on-one and answering their questions.</p>
+                    </li>
+                    <li>
+                        <h3>Sales Lead</h3>
+                        <p class="when">TELUS Field Sales, authorized dealer, Ontario. May 2026 to Sept 2026</p>
+                        <p>Matched customers with the right services, was promoted from Sales Representative within months, trained four new reps and was named Best Performing Rookie.</p>
+                    </li>
+                    <li>
+                        <h3>Student Ambassador</h3>
+                        <p class="when">Black Student Success Network, George Brown Polytechnic. Jan 2025 to Apr 2026</p>
+                        <p>Connected students with academic and support services, represented the network at campus events, hosted talks for Black youth and led campus tours.</p>
+                    </li>
+                    <li>
+                        <h3>Cashier and Staff Trainer</h3>
+                        <p class="when">Jollof Kings, Toronto. Sept 2024 to Dec 2024</p>
+                        <p>Handled busy-hour cash and card sales, resolved customer concerns and trained new staff on the POS system.</p>
+                    </li>
+                    <li>
+                        <h3>Technical Support Volunteer</h3>
+                        <p class="when">Local community centre, Brampton. May 2024 to Aug 2024</p>
+                        <p>Fixed hardware and software problems for more than 80 people and walked each of them through the fix in plain language.</p>
+                    </li>
+                </ol>
 
-            <div class="filter-bar" aria-label="Project filters">
-                <button class="filter-button is-active" type="button" data-filter="all">All</button>
-                <button class="filter-button" type="button" data-filter="backend">Backend</button>
-                <button class="filter-button" type="button" data-filter="database">Database</button>
-                <button class="filter-button" type="button" data-filter="java">Java</button>
-                <button class="filter-button" type="button" data-filter="team">Team Project</button>
-            </div>
-
-            <div class="projects-grid">
-                <article class="project-card reveal" data-project-card data-category="backend database">
-                    <div class="project-card-top">
-                        <p class="project-type">ASP.NET Core / C#</p>
-                        <h3>Hospital Management System</h3>
-                        <p>
-                            A clinic-focused web application centred on backend architecture, service-layer organization, billing flow, patient management, and relational database design.
-                        </p>
-                    </div>
-                    <ul class="project-tags">
-                        <li>ASP.NET Core</li>
-                        <li>C#</li>
-                        <li>Entity Framework Core</li>
-                        <li>MySQL</li>
-                        <li>Docker</li>
-                    </ul>
-                    <details>
-                        <summary>Project highlights</summary>
-                        <p>Designed a normalized schema, modeled core clinic entities, and structured business logic around maintainable services and clean separation of concerns.</p>
-                    </details>
-                    <div class="button-row">
-                        <a class="button" href="https://github.com/Travis-bug/Hospital-Management-System" target="_blank" rel="noreferrer">Open Repository</a>
-                    </div>
-                </article>
-
-                <article class="project-card reveal" data-project-card data-category="java">
-                    <div class="project-card-top">
-                        <p class="project-type">Java Library</p>
-                        <h3>NegEx</h3>
-                        <p>
-                            A Java library that introduces Python-style negative indexing for arrays and lists, with safe conversion logic and clearer out-of-bounds feedback.
-                        </p>
-                    </div>
-                    <ul class="project-tags">
-                        <li>Java</li>
-                        <li>Maven</li>
-                        <li>API Design</li>
-                        <li>Error Handling</li>
-                    </ul>
-                    <details>
-                        <summary>Project highlights</summary>
-                        <p>Focused on developer experience by simplifying reverse indexing access and improving diagnostics when indexes fall outside the valid range.</p>
-                    </details>
-                    <div class="button-row">
-                        <a class="button" href="https://github.com/Travis-bug/NegEx" target="_blank" rel="noreferrer">Open Repository</a>
-                    </div>
-                </article>
-
-                <article  class="project-card reveal" data-project-card data-category="backend">
-                    <div class="project-card-top">
-                        <p class="project-type">Personal Project</p>
-                        <h3>Python Game</h3>
-                        <p>
-                            A terminal-based snake game project built to understand and better my relationship with the Python language
-                        </p>
-                    </div>
-                    <ul class="project-tags">
-                        <li>Curses Library</li>
-                        <li>Python</li>
-                        <li>Documentation</li>
-                        <li>Game Sound Design</li>
-                        <li>Events and State managements</li>
-
-                    </ul>
-                    <details>
-                        <summary>Project highlights</summary>
-                        <p>Concentrated on learning and mastering the Python syntax, how to properly document your project, Events and state management, graphs and video game logic  .</p>
-                    </details>
-
-                    <div class="button-row">
-                        <a class="button" href="https://github.com/Travis-bug/Python-game" target="_blank" rel="noreferrer">Open Repository</a>
-
-                    </div>
-                </article>
-
-
-                <article  class="project-card reveal" data-project-card data-category="backend java team">
-                    <div class="project-card-top">
-                        <p class="project-type">Term Project</p>
-                        <h3>HRM Payroll System</h3>
-                        <p>
-                           A Java-based HR system for staff creation and management, payroll calculations(tax, overtime) and reports.
-                        </p>
-                    </div>
-                    <ul class="project-tags">
-                        <li>Java</li>
-                        <li>Junit</li>
-                        <li>JavaFx</li>
-                        <li>Maven</li>
-                        <li>Database</li>
-
-
-                    </ul>
-                    <details>
-                        <summary>Project highlights</summary>
-                        <p>Worked with the team to create the HRM system, focused on development structure, git, and commit quality, understanding the git workflow and testing.</p>
-                    </details>
-
-                    <div class="button-row">
-                        <a class="button" href="https://github.com/Travis-bug/Comp2130_Assignment_02.git" target="_blank" rel="noreferrer">Open Repository</a>
-
-                    </div>
-                </article>
-
-
-
-
-
+                <dl class="skills">
+                    <div><dt>Languages</dt><dd>C#, Java, Python, JavaScript, SQL, HTML, CSS, C (learning)</dd></div>
+                    <div><dt>Frameworks</dt><dd>ASP.NET Core, Entity Framework Core, Spring Boot, React, JavaFX, Android</dd></div>
+                    <div><dt>Tools and systems</dt><dd>Docker, Git, GitHub, GitLab, GitHub Actions, Linux, Bash, Oracle Cloud, Azure</dd></div>
+                    <div><dt>Working with people</dt><dd>Customer service, technical support, training new staff, incident reporting</dd></div>
+                </dl>
             </div>
         </section>
 
-        <section class="section reveal" id="education" data-section>
-            <div class="section-heading">
-                <p class="eyebrow">Section 3</p>
-                <h2>Education &amp; Acknowledgements</h2>
-                <p>
-                   My academic background, supporting documents, and portfolio materials that help validate my progress and qualifications.
-                </p>
+        <section class="wrap section" id="education" data-section>
+            <div class="section-head">
+                <h2>Education</h2>
             </div>
-
-            <div class="credentials-grid">
-                <article class="panel">
+            <div class="section-body edu">
+                <div>
                     <h3>George Brown Polytechnic</h3>
-                    <p class="credential-title">Diploma in Computer Programming</p>
-                    <p>Toronto, Ontario</p>
-                    <p>Expected completion: June 2027</p>
-                    <p class="panel-note">Relevant study areas include database management, object-oriented programming, Linux, mathematics, and communication for IT professionals, Java, Python, and data structures &amp; algorithms</p>
-                </article>
-
-                <article class="panel">
-                    <h3>Previous Education</h3>
-                    <p class="credential-title">Phelim High School</p>
-                    <p>Benin City, Edo State, Nigeria</p>
-                    <p>Completed WAEC and NECO secondary school qualifications in 2022.</p>
-                </article>
-
-                <article class="panel">
-                    <h3>Unofficial Transcript</h3>
-                    <!-- Note to self: To replace this document later, keep the new file at assets/documents/Unofficial_Transcript.pdf
-                         or update the href if you choose a new filename. Full instructions are also in README.md. -->
-                    <p>A redacted public version of the unofficial transcript is available here for portfolio review.</p>
-                    <div class="button-row">
-                        <a class="button" href="assets/documents/Unofficial_Transcript.pdf" target="_blank" rel="noreferrer">View Redacted Transcript</a>
+                    <p>Diploma, Computer Programming &amp; Analysis</p>
+                    <p class="muted">Toronto, Ontario. Expected June 2027</p>
+                    <p class="muted">Object-oriented programming, databases, mobile development, DevOps, Linux, data structures and algorithms.</p>
+                    <div class="actions">
+                        <a class="button button-quiet" href="assets/documents/Unofficial_Transcript.pdf" target="_blank" rel="noreferrer">View transcript</a>
                     </div>
-                </article>
-
+                </div>
+                <div>
+                    <h3>Phelim High School</h3>
+                    <p>WAEC and NECO qualifications</p>
+                    <p class="muted">Benin City, Nigeria. 2022</p>
+                </div>
             </div>
         </section>
 
-        <section class="section closing-callout reveal">
-            <div class="section-heading">
-                <p class="eyebrow">Professional Presence</p>
-                <h2>GitHub</h2>
-                <p>
-                    My GitHub profile extends this portfolio with repository history, course work, experiments, and ongoing project development.
-                </p>
+        <section class="wrap section" id="contact" data-section>
+            <div class="section-head">
+                <h2>Contact</h2>
+                <p>Send a note here and it lands in my inbox. I reply to the email you give.</p>
             </div>
+            <div class="section-body contact-grid">
+                <ul class="direct">
+                    <li><span>Email</span><a href="mailto:traviseweka39@gmail.com">traviseweka39@gmail.com</a></li>
+                    <li><span>Phone</span><a href="tel:+16475815103">(647) 581-5103</a></li>
+                    <li><span>GitHub</span><a href="https://github.com/Travis-bug" target="_blank" rel="noreferrer">Travis-bug</a></li>
+                    <li><button class="button button-quiet" type="button" id="copy-email">Copy email address</button></li>
+                </ul>
 
-            <div class="button-row">
-                <a class="button" href="https://github.com/Travis-bug" target="_blank" rel="noreferrer">Visit GitHub Profile</a>
-                <button class="button button-secondary" type="button" data-contact-open>Open Contact Panel</button>
+                <form class="contact-form" id="contact-form" novalidate>
+                    <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <label>Your name
+                        <input name="visitorName" type="text" autocomplete="name" required>
+                    </label>
+                    <label>Your email
+                        <input name="visitorEmail" type="email" autocomplete="email" required>
+                    </label>
+                    <label>Phone or LinkedIn <span class="muted">(optional)</span>
+                        <input name="visitorContact" type="text">
+                    </label>
+                    <label>Company <span class="muted">(optional)</span>
+                        <input name="visitorOrganization" type="text" autocomplete="organization">
+                    </label>
+                    <label class="full">Message
+                        <textarea name="visitorMessage" rows="6" maxlength="600" required></textarea>
+                    </label>
+                    <div class="full form-foot">
+                        <p id="message-count">0 / 600 characters</p>
+                        <button class="button" type="submit" id="send-message">Send message</button>
+                    </div>
+                    <p class="full form-status" id="form-status" aria-live="polite"></p>
+                </form>
             </div>
         </section>
     </main>
 
-    <button class="contact-tab" type="button" data-contact-open aria-controls="contact-panel" aria-expanded="false">
-        Contact
-    </button>
-
-    <div class="contact-overlay" data-contact-close hidden></div>
-
-    <aside class="contact-panel" id="contact-panel" aria-hidden="true" inert>
-        <div class="contact-panel-header">
-            <div>
-                <p class="eyebrow">Contact</p>
-                <h2>Start a Conversation</h2>
-            </div>
-            <button class="icon-button" type="button" aria-label="Close contact panel" data-contact-close>&times;</button>
-        </div>
-
-        <p class="contact-intro">
-            Send me a message right from this page. Fill in your details and message, and it goes straight to my inbox. I'll reply to the email you give.
-        </p>
-
-        <form class="contact-form" id="contact-form">
-            <!-- Hidden spam trap: real visitors never see or fill this field. -->
-            <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-            <label>
-                Your name
-                <input name="visitorName" type="text" placeholder="Jane Smith" required>
-            </label>
-
-            <label>
-                Your email
-                <input name="visitorEmail" type="email" placeholder="jane@example.com" required>
-            </label>
-
-            <label>
-                Phone or preferred contact
-                <input name="visitorContact" type="text" placeholder="+1 555 555 5555 or LinkedIn URL">
-            </label>
-
-            <label>
-                Company or organization
-                <input name="visitorOrganization" type="text" placeholder="Optional">
-            </label>
-
-            <label>
-                Short message
-                <textarea name="visitorMessage" rows="6" maxlength="600" placeholder="Hi Travis, I reviewed your portfolio and would like to discuss..." required></textarea>
-            </label>
-
-            <div class="form-meta">
-                <p id="message-count">0 / 600 characters</p>
-                <p class="form-status" id="form-status" aria-live="polite"></p>
-            </div>
-
-            <div class="button-row">
-                <button class="button" type="submit" id="send-message">Send Message</button>
-                <button class="button button-secondary" type="button" id="copy-email">Copy Email Address</button>
-            </div>
-        </form>
-
-        <div class="contact-preview">
-            <p class="preview-label">Message preview</p>
-            <div id="preview-box">
-                Fill in the form to preview the message that will be sent to traviseweka39@gmail.com.
-            </div>
-        </div>
-    </aside>
+    <footer class="wrap site-footer">
+        <span>Travis Eweka, Toronto</span>
+        <a href="#top">Back to top</a>
+    </footer>
 </body>
 </html>

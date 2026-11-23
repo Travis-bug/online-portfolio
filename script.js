@@ -1,144 +1,90 @@
-const contactPanel = document.getElementById("contact-panel");
-const overlay = document.querySelector(".contact-overlay");
-const contactTriggers = document.querySelectorAll("[data-contact-open]");
-const closeTriggers = document.querySelectorAll("[data-contact-close]");
-const contactTab = document.querySelector(".contact-tab");
-const form = document.getElementById("contact-form");
-const previewBox = document.getElementById("preview-box");
-const messageCount = document.getElementById("message-count");
-const formStatus = document.getElementById("form-status");
-const copyEmailButton = document.getElementById("copy-email");
-const navLinks = document.querySelectorAll("[data-nav-link]");
-const sections = document.querySelectorAll("[data-section]");
-const revealTargets = document.querySelectorAll(".reveal");
-const filterButtons = document.querySelectorAll("[data-filter]");
-const projectCards = document.querySelectorAll("[data-project-card]");
-const sendButton = document.getElementById("send-message");
-
 const CONTACT_EMAIL = "traviseweka39@gmail.com";
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
-function setContactState(isOpen) {
-    contactPanel.classList.toggle("is-open", isOpen);
-    contactPanel.setAttribute("aria-hidden", String(!isOpen));
-    contactPanel.inert = !isOpen;
-    overlay.hidden = !isOpen;
+const form = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
+const messageCount = document.getElementById("message-count");
+const sendButton = document.getElementById("send-message");
+const copyEmailButton = document.getElementById("copy-email");
 
-    if (contactTab) {
-        contactTab.setAttribute("aria-expanded", String(isOpen));
-    }
+const field = (data, name) => (data.get(name) || "").toString().trim();
 
-    document.body.style.overflow = isOpen ? "hidden" : "";
-}
-
-function openContactPanel() {
-    setContactState(true);
-}
-
-function closeContactPanel() {
-    setContactState(false);
-}
-
-contactTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", openContactPanel);
-});
-
-closeTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", closeContactPanel);
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeContactPanel();
-    }
-});
-
-function buildPreview(formData) {
-    const visitorName = formData.get("visitorName")?.trim() || "[Your name]";
-    const visitorEmail = formData.get("visitorEmail")?.trim() || "[Your email]";
-    const visitorContact = formData.get("visitorContact")?.trim() || "Not provided";
-    const visitorOrganization = formData.get("visitorOrganization")?.trim() || "Not provided";
-    const visitorMessage = formData.get("visitorMessage")?.trim() || "[Your short message]";
-
+function buildBody(data) {
     return [
         "Portfolio inquiry",
         "",
-        `Message: ${visitorMessage}`,
+        `Message: ${field(data, "visitorMessage")}`,
         "",
-        "Contact details",
-        `Name: ${visitorName}`,
-        `Email: ${visitorEmail}`,
-        `Phone / Preferred contact: ${visitorContact}`,
-        `Organization: ${visitorOrganization}`,
+        `Name: ${field(data, "visitorName")}`,
+        `Email: ${field(data, "visitorEmail")}`,
+        `Phone / LinkedIn: ${field(data, "visitorContact") || "Not provided"}`,
+        `Company: ${field(data, "visitorOrganization") || "Not provided"}`,
     ].join("\n");
 }
 
-function refreshContactPreview() {
-    if (!form) {
-        return;
-    }
-
-    const formData = new FormData(form);
-    const message = formData.get("visitorMessage")?.toString() || "";
-
-    previewBox.textContent = buildPreview(formData);
-    messageCount.textContent = `${message.length} / 600 characters`;
+// Backup if the sending service is down: a mailto link.
+// encodeURIComponent keeps spaces as %20 so drafts don't show "+" signs.
+function showMailtoFallback(subject, body) {
+    const link = document.createElement("a");
+    link.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    link.textContent = "open it in your email app instead";
+    formStatus.textContent = "The message couldn't be sent right now. You can ";
+    formStatus.append(link, ".");
 }
 
 if (form) {
-    refreshContactPreview();
-
     form.addEventListener("input", () => {
-        refreshContactPreview();
+        const length = field(new FormData(form), "visitorMessage").length;
+        messageCount.textContent = `${length} / 600 characters`;
         formStatus.textContent = "";
     });
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        const data = new FormData(form);
+        const name = field(data, "visitorName");
+        const email = field(data, "visitorEmail");
+        const message = field(data, "visitorMessage");
 
-        const formData = new FormData(form);
-        const visitorName = formData.get("visitorName")?.toString().trim();
-        const visitorEmail = formData.get("visitorEmail")?.toString().trim();
-        const visitorMessage = formData.get("visitorMessage")?.toString().trim();
-
-        if (!visitorName || !visitorEmail || !visitorMessage) {
-            formStatus.textContent = "Please complete the required fields before sending.";
+        if (!name || !email || !message) {
+            formStatus.textContent = "Add your name, email and a message, then send again.";
             return;
         }
 
-        // Bots fill every field, including the hidden one. Pretend it worked and stop.
-        if (formData.get("_honey")) {
-            formStatus.textContent = "Thanks! Your message was sent.";
+        if (!form.querySelector('[name="visitorEmail"]').checkValidity()) {
+            formStatus.textContent = "That email address doesn't look complete. Check it and send again.";
+            return;
+        }
+
+        // Bots fill the hidden field. Pretend it worked and stop.
+        if (field(data, "_honey")) {
+            formStatus.textContent = "Message sent.";
             form.reset();
             return;
         }
 
-        const subject = `Portfolio contact from ${visitorName}`;
-        const body = buildPreview(formData);
+        const subject = `Portfolio contact from ${name}`;
+        const body = buildBody(data);
 
         sendButton.disabled = true;
-        sendButton.textContent = "Sending...";
+        sendButton.textContent = "Sending…";
         formStatus.textContent = "";
 
         try {
             // FormSubmit forwards the message to my inbox, so no email app is needed.
             const response = await fetch(FORM_ENDPOINT, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
+                headers: { "Content-Type": "application/json", Accept: "application/json" },
                 body: JSON.stringify({
-                    name: visitorName,
-                    email: visitorEmail,
-                    phone_or_contact: formData.get("visitorContact")?.toString().trim() || "Not provided",
-                    organization: formData.get("visitorOrganization")?.toString().trim() || "Not provided",
-                    message: visitorMessage,
+                    name,
+                    email,
+                    phone_or_contact: field(data, "visitorContact") || "Not provided",
+                    organization: field(data, "visitorOrganization") || "Not provided",
+                    message,
                     _subject: subject,
                     _template: "table",
                 }),
             });
-
             const result = await response.json().catch(() => ({}));
 
             if (!response.ok || String(result.success) !== "true") {
@@ -146,81 +92,72 @@ if (form) {
             }
 
             form.reset();
-            refreshContactPreview();
-            formStatus.textContent = "Thanks! Your message was sent. I'll get back to you soon.";
+            messageCount.textContent = "0 / 600 characters";
+            formStatus.textContent = "Message sent. I'll reply to the email you gave.";
         } catch (error) {
             console.error("Contact form error:", error);
             showMailtoFallback(subject, body);
         } finally {
             sendButton.disabled = false;
-            sendButton.textContent = "Send Message";
+            sendButton.textContent = "Send message";
         }
     });
-}
-
-// Backup plan if the sending service is down: a mailto link that keeps normal spaces.
-// encodeURIComponent turns a space into %20, which every email app understands.
-// (URLSearchParams turned spaces into "+", which is why drafts looked like "hi+my+name+is...".)
-function showMailtoFallback(subject, body) {
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    formStatus.textContent = "";
-    formStatus.append("The message couldn't be sent right now. ");
-
-    const fallbackLink = document.createElement("a");
-    fallbackLink.href = mailtoUrl;
-    fallbackLink.textContent = "Open it in your email app instead";
-    formStatus.append(fallbackLink, ".");
 }
 
 if (copyEmailButton) {
     copyEmailButton.addEventListener("click", async () => {
         try {
             await navigator.clipboard.writeText(CONTACT_EMAIL);
-            formStatus.textContent = "Email address copied.";
-        } catch (error) {
-            formStatus.textContent = `Copy failed. Use ${CONTACT_EMAIL}.`;
+            copyEmailButton.textContent = "Email address copied";
+        } catch {
+            copyEmailButton.textContent = CONTACT_EMAIL;
         }
+        setTimeout(() => { copyEmailButton.textContent = "Copy email address"; }, 2500);
     });
 }
 
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-        }
-    });
-}, { threshold: 0.18 });
-
-revealTargets.forEach((target) => revealObserver.observe(target));
-
-const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-            return;
-        }
-
-        const sectionId = entry.target.getAttribute("id");
-        navLinks.forEach((link) => {
-            const isActive = link.getAttribute("href") === `#${sectionId}`;
-            link.classList.toggle("is-active", isActive);
-        });
-    });
-}, { threshold: 0.45 });
-
-sections.forEach((section) => navObserver.observe(section));
+// Project filters
+const filterButtons = document.querySelectorAll("[data-filter]");
+const projects = document.querySelectorAll(".project");
 
 filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        const filter = button.getAttribute("data-filter");
+        const filter = button.dataset.filter;
+        filterButtons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
 
-        filterButtons.forEach((item) => item.classList.remove("is-active"));
-        button.classList.add("is-active");
-
-        projectCards.forEach((card) => {
-            const categories = card.getAttribute("data-category") || "";
-            const showCard = filter === "all" || categories.includes(filter);
-            card.classList.toggle("is-hidden", !showCard);
+        projects.forEach((project) => {
+            const tags = (project.dataset.tags || "").split(" ");
+            const show = filter === "all" || tags.includes(filter);
+            project.hidden = !show;
+            project.classList.remove("is-entering");
+            if (show) {
+                void project.offsetWidth; // restart the small settle animation
+                project.classList.add("is-entering");
+            }
         });
     });
 });
+
+// Highlight the nav link for the section in view
+const navLinks = document.querySelectorAll("[data-nav-link]");
+const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`));
+    });
+}, { rootMargin: "-40% 0px -55% 0px" });
+
+document.querySelectorAll("[data-section]").forEach((section) => navObserver.observe(section));
+
+// Timeline points fill in once they've been scrolled past
+const seenObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("is-seen");
+            seenObserver.unobserve(entry.target);
+        }
+    });
+}, { rootMargin: "0px 0px -35% 0px" });
+
+document.querySelectorAll(".timeline li").forEach((item) => seenObserver.observe(item));
